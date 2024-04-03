@@ -25,10 +25,10 @@ def c(text):
     return f"C {text.replace('_', ' ')}"
 
 
-@app.route('/python/<text>', strict_slashes=False, defaults={"text": "is cool"})
-def python(text):
+@app.route('/python/<text>', strict_slashes=False)
+def python(text='is cool'):
     """this is the python page"""
-    return f"Python {text.replace('_', ' ')}"
+    return f"Python {escape(text).replace('_', ' ')}"
 
 
 if __name__ == "__main__":
