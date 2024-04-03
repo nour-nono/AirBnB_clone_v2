@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ths is the first flask app"""
 from flask import Flask
+from markupsafe import escape
 
 
 app = Flask(__name__)
@@ -24,12 +25,10 @@ def c(text):
     return f"C {text.replace('_', ' ')}"
 
 
-@app.route('/python/<text>', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False, defaults={"text": "iscool"})
 def python(text):
     """this is the python page"""
-    if text is None or text == "":
-        return f"Python is cool"
-    return f"Python {text.replace('_', ' ')}"
+    return f"Python {escape(text).replace('_', ' ')}"
 
 
 if __name__ == "__main__":
