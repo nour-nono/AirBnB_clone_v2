@@ -27,7 +27,7 @@ def c(text):
 @app.route('/python/<text>', strict_slashes=False)
 def python(text):
     """this is the python page"""
-    if not text:
+    if text is None or text == "":
         return f"Python is cool"
     return f"Python {text.replace('_', ' ')}"
 
