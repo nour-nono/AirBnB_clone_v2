@@ -35,7 +35,7 @@ def python(text='is cool'):
 @app.route('/number/<int:n>', strict_slashes=False)
 def number_page(n):
     """this is the number page"""
-    return f"{n} is a number"
+    return f"{escape(n)} is a number"
 
 
 if __name__ == "__main__":
