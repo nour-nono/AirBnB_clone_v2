@@ -1,2 +1,5 @@
 .idea/
 .flask_venv/
+__pycache__/
+AirBnB_clone_v2-master.zip
+requirments.txt
