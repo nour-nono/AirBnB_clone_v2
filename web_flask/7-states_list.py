@@ -60,7 +60,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def close_db(exception=None):
+def close_db(err=None):
     """this is the close db"""
     storage.close()
 
