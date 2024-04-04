@@ -2,6 +2,7 @@
 """ths is the first flask app"""
 from flask import Flask, render_template
 from models import storage
+from sqlalchemy import text
 from markupsafe import escape
 
 
@@ -59,7 +60,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def close_db():
+def close_db(exception=None):
     """this is the close db"""
     storage.close()
 
