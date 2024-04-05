@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Starts a Flask web application."""
-
+""" Start a Flask web application """
 from models import storage
 from flask import Flask, render_template
+
 app = Flask(__name__)
 
 
@@ -24,6 +24,12 @@ def state_with_id(num_id):
     filtered_cities = sorted(filtered_cities, key=lambda s: s.name)
     return render_template('9-states.html', states=filtered_states,
                            num_id=num_id, cities=filtered_cities)
+
+
+@app.teardown_appcontext
+def close_db(err=None):
+    """this is the close db"""
+    storage.close()
 
 
 app.run(host="0.0.0.0", port=5000)
