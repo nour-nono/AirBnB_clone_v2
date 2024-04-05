@@ -1,12 +1,16 @@
 #!/usr/bin/python3
-""" Start a Flask web application """
+"""
+A script that starts a Flask web application:
+"""
+
+from flask import Flask
 from models import storage
-from flask import Flask, render_template
+from flask import render_template
 
 app = Flask(__name__)
 
 
-@app.route("/states")
+@app.route("/states", stric_slashes=False)
 def states():
     """
     List states: display a HTML page: (inside the tag BODY)
