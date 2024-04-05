@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<HTML lang="en">
+
+<HEAD>
+    <TITLE>HBNB</TITLE>
+</HEAD>
+
+<BODY>
+    <H1>States</H1>
+    <UL>
+        {{% if not num_id %}}
+        {{% for state in states %}}
+        <LI>{{state.id}}: <B>{{state.name}}</B></LI>
+        {{% endfor %}}
+        {{% elif states == [] %}}
+        <LI>Nothing</LI>
+        {{% else %}}
+        <H1>States: {{state[0]}}</H1>
+        <H3>Cities:</H3>
+        {{% for city in cities %}}
+        <LI>{{city.id}}: <B>{{city.name}}</B></LI>
+        {{% endfor %}}
+        {{% endif %}}
+    </UL>
+</BODY>
+
+</HTML>
