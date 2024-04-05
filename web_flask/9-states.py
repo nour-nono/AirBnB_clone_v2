@@ -13,9 +13,8 @@ def states():
     Returns:
         html: template that lists all states sort by name A->Z
     """
-    states_s = storage.all('States').values()
-    states_s = sorted(states_s, key=lambda s: s.name)
-    return render_template('9-states.html', states=states_s)
+    states = storage.all("State").values()
+    return render_template("7-states_list.html", states=states)
 
 
 @app.route("/states/<id>", stric_slashes=False)
@@ -25,13 +24,12 @@ def state_with_id(num_id):
     Returns:
         html: template that lists cities of state sort by name A->Z
     """
-    states_s = storage.all('States').values()
-    filtered_states = [state for state in states_s if state.id == num_id]
-    cities = storage.all('City').values()
-    filtered_cities = [city for city in cities if city.state_id == num_id]
-    filtered_cities = sorted(filtered_cities, key=lambda s: s.name)
-    return render_template('9-states.html', states=filtered_states,
-                           num_id=num_id, cities=filtered_cities)
+    state = None
+    for s in storage.all("State").values():
+        if s.id == num_id:
+            state = s
+            break
+    return render_template("9-states.html", state=state)
 
 
 @app.teardown_appcontext
@@ -40,4 +38,5 @@ def close_db(err=None):
     storage.close()
 
 
-app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
