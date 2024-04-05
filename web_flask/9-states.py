@@ -8,7 +8,11 @@ app = Flask(__name__)
 
 @app.route("/states")
 def states():
-    """ Display HTML page: (inside the tag BODY) """
+    """
+    List states: display a HTML page: (inside the tag BODY)
+    Returns:
+        html: template that lists all states sort by name A->Z
+    """
     states_s = storage.all('States').values()
     states_s = sorted(states_s, key=lambda s: s.name)
     return render_template('9-states.html', states=states_s)
@@ -16,7 +20,11 @@ def states():
 
 @app.route("/states/<id>", stric_slashes=False)
 def state_with_id(num_id):
-    """ Display HTML page: (inside the tag BODY) """
+    """
+    Get a state by id
+    Returns:
+        html: template that lists cities of state sort by name A->Z
+    """
     states_s = storage.all('States').values()
     filtered_states = [state for state in states_s if state.id == num_id]
     cities = storage.all('City').values()
