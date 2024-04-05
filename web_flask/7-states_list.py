@@ -56,7 +56,7 @@ def odd_or_even(n):
 def states_list():
     """ Display HTML page: (inside the tag BODY) """
     states = storage.all("State").values()
-    states = sorted(states, key=lambda v: v['name'])
+    states = sorted(states, key=lambda v: v.name)
     return render_template("7-states_list.html", states=states)
 
 
